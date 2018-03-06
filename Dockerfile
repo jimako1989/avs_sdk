@@ -2,8 +2,8 @@ FROM dorowu/ubuntu-desktop-lxde-vnc
 MAINTAINER jimako1989
 USER root
 
-WORKDIR /home/root
-ENV HOME /home/root
+WORKDIR /root
+ENV HOME /root
 
 # The first step is to make sure your machine has the latest package lists and then install the latest version of each package in that list:
 RUN pwd\
@@ -57,4 +57,7 @@ RUN cd ~/sdk-folder/sdk-source && git clone git://github.com/alexa/avs-device-sd
 RUN cd ${HOME}/sdk-folder/sdk-build && cmake ${HOME}/sdk-folder/sdk-source/avs-device-sdk -DSENSORY_KEY_WORD_DETECTOR=OFF -DGSTREAMER_MEDIA_PLAYER=ON -DPORTAUDIO=ON -DPORTAUDIO_LIB_PATH=${HOME}/sdk-folder/third-party/portaudio/lib/.libs/libportaudio.a -DPORTAUDIO_INCLUDE_DIR=${HOME}/sdk-folder/third-party/portaudio/include && make
 # The AVS Device SDK uses a sample authorization service build in Python to obtain refresh and access tokens. In this step, we'll install PIP and other dependencies for the authorization service:
 RUN easy_install pip \
+ && pip install --upgrade pip \
  && pip install --user flask requests commentjson
+# Audio card
+RUN apt-get install -y pulseaudio socat alsa-utils
