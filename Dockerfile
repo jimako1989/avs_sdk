@@ -60,4 +60,9 @@ RUN easy_install pip \
  && pip install --upgrade pip \
  && pip install --user flask requests commentjson
 # Audio card
-RUN apt-get install -y pulseaudio socat alsa-utils
+RUN apt-get install -y pulseaudio alsa-utils socat \
+ & pulseaudio -D --exit-idle-time=-1 \
+ & pacmd load-module module-pipe-source file=/dev/audio format=s16 rate=44100 channels=2 \
+ & socat tcp-listen:3000 file:/dev/audio &
+# Mkdir to mount the volume
+RUN mkdir /root/workspace
