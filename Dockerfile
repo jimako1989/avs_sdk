@@ -1,4 +1,4 @@
-FROM jsurf/rpi-raspbian
+FROM resin/armv7hf-debian-qemu
 MAINTAINER jimako1989
 USER root
 
@@ -6,7 +6,7 @@ WORKDIR /home/root
 ENV HOME /home/root
 
 # The first step is to make sure your machine has the latest package lists and then install the latest version of each package in that list:
-RUN apt-get -o Dpkg::Options::="--force-confnew" update && apt-get -o Dpkg::Options::="--force-confnew" upgrade -y
+RUN apt-get update && apt-get upgrade -y
 # We need somewhere to put everything, so let's create some folders. This guide presumes that everything is built in ${HOME}, which we will presume is your home directory. If you choose to use different folder names, please update the commands throughout this guide accordingly:
 RUN cd /home/root/ \
  && mkdir sdk-folder \
