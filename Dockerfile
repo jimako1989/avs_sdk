@@ -17,15 +17,7 @@ RUN cd /home/root/ \
  && cd application-necessities \
  && mkdir sound-files
 # Now, let's set up our toolchain:
-RUN apt-get -y install git gcc build-essential libsqlite3-dev libcurl4-openssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev doxygen wget python-setuptools libgtest-dev libncurses5-dev
-# Installing latest cmake
-RUN cd /home/root/sdk-folder/third-party \
- && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
- && tar -zxvf cmake-3.10.2.tar.gz \
- && cd cmake-3.10.2 \
- && ./configure \
- && make \
- && make install
+RUN apt-get -y install git gcc cmake build-essential libsqlite3-dev libcurl4-openssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev doxygen wget python-setuptools libgtest-dev libncurses5-dev
 # Next, PortAudio is required to record microphone data. Run this command to install and configure PortAudio:
 RUN cd /home/root/sdk-folder/third-party \
  && wget -c http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz \
