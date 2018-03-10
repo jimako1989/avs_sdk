@@ -17,7 +17,7 @@ RUN cd /home/root/ \
  && cd application-necessities \
  && mkdir sound-files
 # Now, let's set up our toolchain:
-RUN apt-get -y install git gcc build-essential libsqlite3-dev libcurl4-openssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev doxygen wget python-setuptools libgtest-dev
+RUN apt-get -y install git gcc build-essential libsqlite3-dev libcurl4-openssl-dev libfaad-dev libsoup2.4-dev libgcrypt20-dev libgstreamer-plugins-bad1.0-dev gstreamer1.0-plugins-good libasound2-dev doxygen wget python-setuptools libgtest-dev libncurses5-dev
 # Installing latest cmake
 RUN cd /home/root/sdk-folder/third-party \
  && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
