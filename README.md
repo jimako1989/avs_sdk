@@ -2,9 +2,7 @@
 
 Alexa Voice Service SDK
 
-## VNC
-
- - Connect to the container
+## Getting started
 
 1. Start the docker container.
  ```
