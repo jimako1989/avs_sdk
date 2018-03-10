@@ -5,6 +5,8 @@ USER root
 WORKDIR /home/root
 ENV HOME /home/root
 
+RUN [ "cross-build-start" ]
+
 # The first step is to make sure your machine has the latest package lists and then install the latest version of each package in that list:
 RUN apt-get update && apt-get upgrade -y
 # We need somewhere to put everything, so let's create some folders. This guide presumes that everything is built in ${HOME}, which we will presume is your home directory. If you choose to use different folder names, please update the commands throughout this guide accordingly:
@@ -47,3 +49,5 @@ RUN cd /home/root/sdk-folder/third-party/alexa-rpi/bin/ \
 # Run cmake to generate the build dependencies. This command declares that the wake word engine and gstreamer are enabled, and provides paths to the wake word engine and PortAudio:
 RUN cd /home/root/sdk-folder/sdk-build \
  && cmake /home/root/sdk-folder/sdk-source/avs-device-sdk -DSENSORY_KEY_WORD_DETECTOR=ON -DSENSORY_KEY_WORD_DETECTOR_LIB_PATH=/home/root/sdk-folder/third-party/alexa-rpi/lib/libsnsr.a -DSENSORY_KEY_WORD_DETECTOR_INCLUDE_DIR=/home/root/sdk-folder/third-party/alexa-rpi/include -DGSTREAMER_MEDIA_PLAYER=ON -DPORTAUDIO=ON -DPORTAUDIO_LIB_PATH=/home/root/sdk-folder/third-party/portaudio/lib/.libs/libportaudio.a -DPORTAUDIO_INCLUDE_DIR=/home/root/sdk-folder/third-party/portaudio/include
+
+RUN [ "cross-build-end" ]
