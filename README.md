@@ -1,6 +1,6 @@
-# ubuntu-avs_sdk
+# avs_sdk
 
-Alexa Voice Service SDK on Ubuntu 16.04
+Alexa Voice Service SDK
 
 ## VNC
 
@@ -10,6 +10,3 @@ Alexa Voice Service SDK on Ubuntu 16.04
  ```
  ./docker_run.sh
  ```
-
-1. Access the following page;
-http://127.0.0.1:6080/

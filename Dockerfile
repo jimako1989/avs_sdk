@@ -1,5 +1,4 @@
-FROM armhf/alpine
-FROM resin/rpi-raspbian
+FROM jsurf/rpi-raspbian
 MAINTAINER jimako1989
 USER root
 
