@@ -23,7 +23,7 @@ RUN cd /home/root/sdk-folder/third-party \
  && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz \
  && tar -zxvf cmake-3.10.2.tar.gz \
  && cd cmake-3.10.2 \
- && ./bootstrap --prefix=/usr --system-libs --mandir=/share/man --docdir=/share/doc/cmake-3.10.2
+ && ./bootstrap --prefix=/usr --system-libs --mandir=/share/man --docdir=/share/doc/cmake-3.10.2 \
  && make \
  && make test \
  && make install
