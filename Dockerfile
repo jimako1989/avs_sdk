@@ -10,13 +10,6 @@ RUN [ "cross-build-start" ]
 # The first step is to make sure your machine has the latest package lists and then install the latest version of each package in that list:
 RUN apt-get update
 RUN apt-get upgrade -y
-# We need somewhere to put everything, so let's create some folders. This guide presumes that everything is built in ${HOME}, which we will presume is your home directory. If you choose to use different folder names, please update the commands throughout this guide accordingly:
-RUN cd /home/root/
-RUN mkdir sdk-folder
-RUN cd sdk-folder
-RUN mkdir sdk-build sdk-source third-party application-necessities
-RUN cd application-necessities
-RUN mkdir sound-files
 # Now, let's set up our toolchain:
 RUN apt-get -y install git
 RUN apt-get -y install gcc
@@ -37,15 +30,16 @@ RUN apt-get -y install libgtest-dev
 RUN apt-get -y install libncurses5-dev
 RUN apt-get -y install librhash-dev
 # Installing latest cmake
-RUN cd /home/root/sdk-folder/third-party
-RUN wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz
+RUN cd /home/root/sdk-folder/third-party \
+ && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz
 RUN tar -zxvf cmake-3.10.2.tar.gz
 RUN cd cmake-3.10.2
 RUN ./bootstrap --no-system-libs
 RUN make
 RUN make install
 # Next, PortAudio is required to record microphone data. Run this command to install and configure PortAudio:
-RUN cd /home/root/sdk-folder/third-party
+RUN mkdir -p /home/root/sdk-folder/third-party \
+ && cd /home/root/sdk-folder/third-party
 RUN wget -c http://www.portaudio.com/archives/pa_stable_v190600_20161030.tgz
 RUN tar zxf pa_stable_v190600_20161030.tgz
 RUN cd portaudio
@@ -56,7 +50,8 @@ RUN easy_install pip
 RUN pip install --upgrade pip
 RUN pip install commentjson
 # Clone the AVS Device SDK and the Sensory wake word engine
-RUN cd /home/root/sdk-folder/sdk-source
+RUN mkdir -p /home/root/sdk-folder/sdk-source \
+ && cd /home/root/sdk-folder/sdk-source
 RUN git clone git://github.com/alexa/avs-device-sdk.git
 # Next, let's clone the sensory wake word engine into our third-party directory:
 RUN cd /home/root/sdk-folder/third-party
@@ -65,7 +60,8 @@ RUN git clone git://github.com/Sensory/alexa-rpi.git
 RUN cd /home/root/sdk-folder/third-party/alexa-rpi/bin/
 RUN yes | ./license.sh
 # Run cmake to generate the build dependencies. This command declares that the wake word engine and gstreamer are enabled, and provides paths to the wake word engine and PortAudio:
-RUN cd /home/root/sdk-folder/sdk-build
+RUN mkdir -p /home/root/sdk-folder/sdk-build \
+ && cd /home/root/sdk-folder/sdk-build
 RUN cmake /home/root/sdk-folder/sdk-source/avs-device-sdk -DSENSORY_KEY_WORD_DETECTOR=ON -DSENSORY_KEY_WORD_DETECTOR_LIB_PATH=/home/root/sdk-folder/third-party/alexa-rpi/lib/libsnsr.a -DSENSORY_KEY_WORD_DETECTOR_INCLUDE_DIR=/home/root/sdk-folder/third-party/alexa-rpi/include -DGSTREAMER_MEDIA_PLAYER=ON -DPORTAUDIO=ON -DPORTAUDIO_LIB_PATH=/home/root/sdk-folder/third-party/portaudio/lib/.libs/libportaudio.a -DPORTAUDIO_INCLUDE_DIR=/home/root/sdk-folder/third-party/portaudio/include
 
 RUN [ "cross-build-end" ]
