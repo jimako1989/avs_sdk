@@ -30,7 +30,8 @@ RUN apt-get -y install libgtest-dev
 RUN apt-get -y install libncurses5-dev
 RUN apt-get -y install librhash-dev
 # Installing latest cmake
-RUN cd /home/root/sdk-folder/third-party \
+RUN mkdir -p /home/root/sdk-folder/third-party \
+ && cd /home/root/sdk-folder/third-party \
  && wget https://cmake.org/files/v3.10/cmake-3.10.2.tar.gz
 RUN tar -zxvf cmake-3.10.2.tar.gz
 RUN cd cmake-3.10.2
