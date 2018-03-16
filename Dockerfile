@@ -14,7 +14,9 @@ RUN apt-get update \
 RUN apt-get install -y wget
 RUN wget https://raw.githubusercontent.com/alexa/avs-device-sdk/master/tools/Install/setup.sh && wget https://raw.githubusercontent.com/alexa/avs-device-sdk/master/tools/Install/config.txt && wget https://raw.githubusercontent.com/alexa/avs-device-sdk/master/tools/Install/pi.sh
 RUN [ "cross-build-end" ]
-CMD cp /home/root/workspace/config.txt /home/root/ \
-CMD sudo bash setup.sh config.txt
-CMD sudo bash startauth.sh
-CMD sudo bash startsample.sh
+CMD cp /home/root/workspace/hostname /etc/
+#CMD cp /home/root/workspace/config.txt /home/root/
+#CMD sudo bash setup.sh config.txt
+#CMD sudo bash startauth.sh
+#CMD sudo bash startsample.sh
+CMD bash
