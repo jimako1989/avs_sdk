@@ -1,0 +1,5 @@
+CLIENT_SECRET="f4b0fe285dbb2ff91c556c3bc05bc4c65aa88ba37e0156d7e6ff3e9d5407409d"
+#NOTE: The Device Serial Number can be any unique number
+DEVICE_SERIAL_NUMBER="123456"
+CLIENT_ID="amzn1.application-oa2-client.f3d439f0918b4cb7ac0b54cf44dfa78b"
+PRODUCT_ID="reCatch"
